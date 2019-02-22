@@ -9,9 +9,9 @@ public class BowlingGame {
 
 	public void roll(int pinsDown) throws BowlingException {
 		try {
-		rolls[roll++] = pinsDown;
-		}catch (Exception e) {
-			  throw new BowlingException("No of rolls Exhausted ",e);
+			rolls[roll++] = pinsDown;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new BowlingException("No of rolls Exhausted ", e);
 		}
 	}
 
@@ -19,11 +19,10 @@ public class BowlingGame {
 		int score = 0;
 		int cursor = 0;
 		for (int frame = 0; frame < 10; frame++) {
-			if(isStrike(cursor)) {
-				score +=10 +rolls[cursor+1]+rolls[cursor+2];
+			if (isStrike(cursor)) {
+				score += 10 + rolls[cursor + 1] + rolls[cursor + 2];
 				cursor++;
-			}
-			else if (isSpare(cursor)) {
+			} else if (isSpare(cursor)) {
 				score += 10 + rolls[cursor + 2];
 				cursor += 2;
 			} else {
@@ -33,17 +32,17 @@ public class BowlingGame {
 		}
 		return score;
 	}
-	
+
 	public boolean isStrike(int cursor) {
-		return rolls[cursor]==10;
+		return rolls[cursor] == 10;
 	}
 
 	public boolean isSpare(int cursor) {
-		return rolls[cursor] + rolls[cursor+1] ==10;
+		return rolls[cursor] + rolls[cursor + 1] == 10;
 	}
-	
+
 	public void roll(int... rolls) throws BowlingException {
-		for (int pinsDown: rolls) {
+		for (int pinsDown : rolls) {
 			roll(pinsDown);
 		}
 	}
