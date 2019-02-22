@@ -1,12 +1,18 @@
 package com.bowling.runner;
 
+import com.bowling.exception.BowlingException;
+
 public class BowlingGame {
 
 	private int roll = 0;
 	private int[] rolls = new int[21];
 
-	public void roll(int pinsDown) {
+	public void roll(int pinsDown) throws BowlingException {
+		try {
 		rolls[roll++] = pinsDown;
+		}catch (Exception e) {
+			  throw new BowlingException("No of rolls Exhausted ",e);
+		}
 	}
 
 	public int score() {
@@ -36,7 +42,7 @@ public class BowlingGame {
 		return rolls[cursor] + rolls[cursor+1] ==10;
 	}
 	
-	public void roll(int... rolls) {
+	public void roll(int... rolls) throws BowlingException {
 		for (int pinsDown: rolls) {
 			roll(pinsDown);
 		}
