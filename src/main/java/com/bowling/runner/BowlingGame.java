@@ -1,12 +1,16 @@
 package com.bowling.runner;
 
+import org.apache.log4j.Logger;
+
 import com.bowling.exception.BowlingException;
 
 public class BowlingGame {
 
 	private int roll = 0;
 	private int[] rolls = new int[21];
-
+	final static Logger log = Logger.getLogger(BowlingGame.class);
+	
+	
 	public void roll(int pinsDown) throws BowlingException {
 		try {
 			rolls[roll++] = pinsDown;
@@ -45,5 +49,20 @@ public class BowlingGame {
 		for (int pinsDown : rolls) {
 			roll(pinsDown);
 		}
+	}
+
+	public static void main(String[] values) throws BowlingException {
+		int[] rolls = new int[values.length];
+		BowlingGame bowlingGame = new BowlingGame();
+		for (int i = 0; i < values.length; i++) {
+			try {
+				rolls[i] = Integer.parseInt(values[i]);
+			} catch (NumberFormatException e) {
+				throw new BowlingException("Please provide valid numerical value", e);
+			}
+		}
+		bowlingGame.roll(rolls);
+		log.debug("Players bowling score");
+		log.debug(bowlingGame.score());
 	}
 }

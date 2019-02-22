@@ -82,4 +82,12 @@ public class BowlingGameTest {
 		assertThat(bowlingGame.score(), is(-16));
 	}
 	
+	@Test(expected = BowlingException.class)
+	public void testPassingWrongInputs() throws BowlingException {
+		BowlingGame.main(new String[] { "String value" });
+	}
+	@Test
+	public void testPassingInputValuesToMain() throws BowlingException {
+		BowlingGame.main(new String[] { "10","10","10","10","10","10","10","10","10","10"});
+	}
 }
