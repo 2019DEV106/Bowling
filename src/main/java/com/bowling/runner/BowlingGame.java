@@ -8,7 +8,7 @@ public class BowlingGame {
 
 	private int roll = 0;
 	private int[] rolls = new int[21];
-	final static Logger log = Logger.getLogger(BowlingGame.class);
+	private static final Logger log = Logger.getLogger(BowlingGame.class);
 	
 	
 	public void roll(int pinsDown) throws BowlingException {

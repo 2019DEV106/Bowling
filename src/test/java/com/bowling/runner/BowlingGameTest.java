@@ -88,6 +88,8 @@ public class BowlingGameTest {
 	}
 	@Test
 	public void testPassingInputValuesToMain() throws BowlingException {
-		BowlingGame.main(new String[] { "10","10","10","10","10","10","10","10","10","10"});
+		String bowlingValue[]=new String[] { "10","10","10","10","10","10","10","10","10","10"};
+		BowlingGame.main(bowlingValue);
+		assertThat(bowlingValue.length, is(10));
 	}
 }
