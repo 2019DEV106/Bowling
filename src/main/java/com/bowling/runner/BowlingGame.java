@@ -28,4 +28,10 @@ public class BowlingGame {
 	public boolean isSpare(int cursor) {
 		return rolls[cursor] + rolls[cursor+1] ==10;
 	}
+	
+	public void roll(int... rolls) {
+		for (int pinsDown: rolls) {
+			roll(pinsDown);
+		}
+	}
 }
