@@ -26,6 +26,15 @@ public class BowlingGameTest {
 		roll(20, 1);
 		assertThat(bowlingGame.score(), is(20));
 	}
+	
+	@Test
+	public void scoreSpareFollowedByThree() {
+		bowlingGame.roll(5);
+		bowlingGame.roll(5);
+		bowlingGame.roll(3);
+		roll(17, 0);
+		assertThat(bowlingGame.score(), is(16));
+	}
 
 	public void roll(int times, int pinsDown) {
 		for (int i = 0; i < times; i++) {
